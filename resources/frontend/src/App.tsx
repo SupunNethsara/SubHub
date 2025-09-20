@@ -1,8 +1,11 @@
 import "./App.css";
+import IntroScreen from "./Components/Loading Page/IntroScreen.tsx";
 
 function App() {
     return(
-        <div></div>
+        <div>
+            <IntroScreen/>
+        </div>
     )
 }
 
