@@ -27,5 +27,19 @@ it('can store a subscription via API', function () {
         ]
     ]);
 });
+it('cannot create subscription with duplicate email', function () {
+    $subscription = Subscription::create([
+        'email' => 'duplicate@example.com',
+        'website_id' => 'website_001',
+    ]);
+    $data = [
+        'email' => 'duplicate@example.com',
+        'website_id' => 'website_002',
+    ];
+    $response = $this->postJson('/api/subscription' , $data);
+
+    $response->assertStatus(422)->assertJsonValidationErrors('email');
+    $this->assertDatabaseCount('subscriptions', 1);
+});
 
 
