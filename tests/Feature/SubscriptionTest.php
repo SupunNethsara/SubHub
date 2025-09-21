@@ -62,3 +62,15 @@ it('cannot create subscription without website_id', function () {
 
     $this->assertDatabaseCount('subscriptions', 0);
 });
+it('cannot create subscription with invalid email', function () {
+    $data = [
+        'email' => 'not-an-email',
+        'website_id' => 'website_123',
+    ];
+    $response = $this->postJson('/api/subscription', $data);
+
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors('email');
+
+    $this->assertDatabaseCount('subscriptions', 0);
+});
