@@ -42,4 +42,23 @@ it('cannot create subscription with duplicate email', function () {
     $this->assertDatabaseCount('subscriptions', 1);
 });
 
+it('cannot create subscription without email', function () {
+    $data = [
+      'website_id'=>'12'
+    ];
+    $response = $this->postJson('/api/subscription' , $data);
+    $response->assertStatus(422)->assertJsonValidationErrors('email');
+    $this->assertDatabaseCount('subscriptions', 0);
+});
 
+it('cannot create subscription without website_id', function () {
+    $data = [
+        'email' => 'no-website@example.com',
+    ];
+    $response = $this->postJson('/api/subscription', $data);
+
+    $response->assertStatus(422)
+        ->assertJsonValidationErrors('website_id');
+
+    $this->assertDatabaseCount('subscriptions', 0);
+});
