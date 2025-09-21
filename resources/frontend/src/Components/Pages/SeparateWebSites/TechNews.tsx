@@ -1,11 +1,13 @@
 import {useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import SubscribeModal from "../Models/SubscribeModel.tsx";
 
 function TechNewsUI() {
+    const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const { website_id } = location.state || {};
-
-    console.log(website_id);
+console.log('wwww' , website_id)
     const posts = [
         {
             id: 1,
@@ -34,7 +36,7 @@ function TechNewsUI() {
                         <h1 className="text-3xl font-bold">TechNews.LK</h1>
                     </div>
                     <div className="ml-auto flex space-x-4">
-                        <button className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-green-500/20">
+                        <button onClick={() => setIsSubscribeModalOpen(true)} className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-green-500/20">
                             Subscribe
                         </button>
                         <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-blue-500/20">
@@ -83,6 +85,11 @@ function TechNewsUI() {
                     </div>
                 </div>
             </div>
+            <SubscribeModal
+                isOpen={isSubscribeModalOpen}
+                website_id={String(website_id)}
+                onClose={() => setIsSubscribeModalOpen(false)}
+            />
         </div>
     );
 }
