@@ -1,7 +1,180 @@
 function TrackWebsites() {
+    const websites = [
+        {
+            id: 1,
+            name: "TechNews.LK",
+            url: "https://technews.lk",
+            image: "TechNews.jpeg",
+            lastUpdated: "5 hours ago",
+            status: "active",
+        },
+        {
+            id: 2,
+            name: "ReadMe Sri Lanka",
+            url: "http://readme.lk",
+            image: "Readme.png",
+            lastUpdated: "1 day ago",
+            status: "active",
+        },
+        {
+            id: 3,
+            name: "Techspot Sri Lanka",
+            url: "https://techspot.lk",
+            image: "TechSpot.webp",
+            lastUpdated: "3 hours ago",
+            status: "active",
+        },
+        {
+            id: 4,
+            name: "Ada Derana Tech",
+            url: "https://adaderana.lk/tech",
+            image: "AdaDerana.jpg",
+            lastUpdated: "Just now",
+            status: "active",
+        },
+    ];
+
     return (
-        <div>
-            <h1>Track websites</h1>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white py-12 px-4 sm:px-6 lg:px-8">
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 rounded-full filter blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-700/5 rounded-full filter blur-3xl"></div>
+            </div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-12">
+                    <div className="flex items-center justify-center mb-4">
+                        <div className="w-3 h-10 bg-green-500 mr-3 rounded-full"></div>
+                        <h1 className="text-4xl font-bold">
+                            Track Your Websites
+                        </h1>
+                    </div>
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Monitor content changes and get notified when your
+                        favorite websites update
+                    </p>
+                </div>
+
+                <div className="bg-gray-800/60 backdrop-blur-md rounded-2xl border border-gray-700/30 p-6 mb-10">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div className="relative flex-grow">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg
+                                    className="h-5 w-5 text-gray-400"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <input
+                                type="text"
+                                className="block w-full pl-10 pr-3 py-3 bg-gray-900/40 border border-gray-700/50 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 text-white placeholder-gray-500"
+                                placeholder="Search for websites or add a new URL..."
+                            />
+                        </div>
+                        <button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-xl transition duration-300 flex items-center justify-center shadow-lg shadow-green-500/20">
+                            <svg
+                                className="w-5 h-5 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                ></path>
+                            </svg>
+                            Add Website
+                        </button>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {websites.map((website) => (
+                        <div
+                            key={website.id}
+                            className="bg-gray-800/40 backdrop-blur-md rounded-2xl border border-gray-700/20 overflow-hidden hover:shadow-xl hover:shadow-green-500/10 transition-all duration-300"
+                        >
+                            <div className="relative h-48 overflow-hidden">
+                                <img
+                                    src={website.image}
+                                    alt={website.name}
+                                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                <div className="absolute top-4 right-4">
+                                    <span
+                                        className={`px-3 py-1 rounded-full text-xs font-medium ${website.status === "active" ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-gray-700/60 text-gray-300 border border-gray-600/50"}`}
+                                    >
+                                        {website.status === "active"
+                                            ? "Active"
+                                            : "Paused"}
+                                    </span>
+                                </div>
+                                <div className="absolute top-4 left-4 w-3 h-3 bg-green-500/95 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30"></div>
+                            </div>
+
+                            <div className="p-5">
+                                <h3 className="text-xl font-semibold text-white mb-1 truncate">
+                                    {website.name}
+                                </h3>
+                                <p className="text-gray-400 text-sm mb-4 truncate">
+                                    {website.url}
+                                </p>
+
+                                <div className="flex items-center justify-between mb-5">
+                                    <span className="text-sm text-gray-400">
+                                        Updated: {website.lastUpdated}
+                                    </span>
+                                    <div className="flex items-center">
+                                        <div
+                                            className={`w-2 h-2 rounded-full mr-2 ${website.status === "active" ? "bg-green-500 animate-pulse" : "bg-gray-500"}`}
+                                        ></div>
+                                        <span className="text-xs text-gray-400">
+                                            {website.status === "active"
+                                                ? "Monitoring"
+                                                : "Paused"}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="flex space-x-3">
+                                    <button className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20">
+                                        View Changes
+                                    </button>
+                                    <button className="w-10 h-10 flex items-center justify-center bg-gray-700/50 hover:bg-gray-700 text-gray-300 rounded-lg transition duration-300 border border-gray-600/50">
+                                        <svg
+                                            className="w-5 h-5"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
