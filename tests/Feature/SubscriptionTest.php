@@ -6,7 +6,26 @@ use Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class);
 
-it('has subscription page', function () {
-    $subscriptions = Subscription::factory()->count(10)->create();
-    expect(Subscription::count())->toBe(10);
+it('can create 10 subscriptions using factory', function () {
+    $subscription = Subscription::factory()->create();
+    expect(Subscription::count())->toBe(1);
+    $this->assertDatabaseHas('subscriptions', [
+        'email' => $subscription->email,
+        'website_id' => $subscription->website_id,
+    ]);
 });
+it('can store a subscription via API', function () {
+    $data = [
+        'email'=>'example@gmail.com',
+        'website_id'=>'12'
+    ];
+    $response = $this->postJson('/api/subscription' , $data);
+    $response->assertStatus(201)->assertJson([
+        'subscription' => [
+            'email' => $data['email'],
+            'website_id' => $data['website_id'],
+        ]
+    ]);
+});
+
+
