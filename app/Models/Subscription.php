@@ -15,8 +15,7 @@ class Subscription extends Model
       'email',
       'website_id'
     ];
-
-
     public $incrementing = false;
     protected $keyType = 'string';
+
 }

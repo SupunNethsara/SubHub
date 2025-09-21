@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('website_id');
             $table->timestamps();
+
+            $table->unique(['email', 'website_id']);
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SubscriptionRequest extends FormRequest
 {
@@ -19,11 +20,23 @@ class SubscriptionRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'email' => 'required|email|unique:subscriptions,email',
-            'website_id' => 'required|string',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('subscriptions')->where(function ($query) {
+                    return $query->where('website_id', $this->input('website_id'));
+                })
+            ],
+            'website_id' => ['required', 'string'],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'email.unique' => 'This email is already subscribed to this website.'
         ];
     }
 }
