@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use mysql_xdevapi\Exception;
 
 class SubscriptionController extends Controller
 {
@@ -18,9 +19,9 @@ class SubscriptionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**
@@ -28,7 +29,13 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try{
+
+        }
+        catch (\Exception $exception) {
+
+        }
     }
 
     /**
