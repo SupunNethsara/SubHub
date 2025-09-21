@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->uuid()->primary();
-            $table->string('website_id');
+            $table->uuid('id')->primary();
             $table->string('email')->unique();
+            $table->string('website_id');
             $table->timestamps();
         });
     }
