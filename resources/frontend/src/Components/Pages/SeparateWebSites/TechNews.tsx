@@ -1,7 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 function TechNewsUI() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { website_id } = location.state || {};
+
+    console.log(website_id);
     const posts = [
         {
             id: 1,

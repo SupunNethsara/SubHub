@@ -113,7 +113,11 @@ function TrackWebsites() {
                                     <button
                                         onClick={() =>
                                             website.path &&
-                                            navigate(website.path)
+                                            navigate(website.path , {
+                                                state:{
+                                                    website_id:website.id
+                                                },
+                                            })
                                         }
                                         className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20"
                                     >
