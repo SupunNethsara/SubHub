@@ -1,6 +1,8 @@
-function TechNewsUI() {
-    const posts = [
+import { useNavigate } from "react-router-dom";
 
+function TechNewsUI() {
+    const navigate = useNavigate();
+    const posts = [
         {
             id: 1,
             title: "New Tech Startup Incubator Opens",
@@ -15,6 +17,15 @@ function TechNewsUI() {
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center mb-8">
                     <div className="flex items-center">
+                        <button
+                            onClick={() => navigate(-1)}
+                            className="mr-4 p-2 bg-gray-700/50 hover:bg-gray-700 rounded-xl transition duration-300 flex items-center justify-center"
+                            aria-label="Go back"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
                         <div className="w-3 h-10 bg-green-500 mr-3 rounded-full"></div>
                         <h1 className="text-3xl font-bold">TechNews.LK</h1>
                     </div>
