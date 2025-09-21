@@ -1,3 +1,5 @@
+import {useNavigate} from "react-router-dom";
+
 function TrackWebsites() {
     const websites = [
         {
@@ -7,6 +9,7 @@ function TrackWebsites() {
             image: "TechNews.jpeg",
             lastUpdated: "5 hours ago",
             status: "active",
+            path:'/TechNews'
         },
         {
             id: 2,
@@ -33,6 +36,7 @@ function TrackWebsites() {
             status: "active",
         },
     ];
+    const navigate = useNavigate();
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -132,7 +136,7 @@ function TrackWebsites() {
                                 </div>
 
                                 <div className="flex space-x-3">
-                                    <button className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20">
+                                    <button onClick={() => website.path && navigate(website.path)} className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20">
                                         View WebSite
                                     </button>
                                     <button className="w-10 h-10 flex items-center justify-center bg-gray-700/50 hover:bg-gray-700 text-gray-300 rounded-lg transition duration-300 border border-gray-600/50">
