@@ -1,4 +1,5 @@
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { AddIcon, OptionsIcon, SearchIcon } from "./Svg/Svgicons.tsx";
 
 function TrackWebsites() {
     const websites = [
@@ -9,7 +10,7 @@ function TrackWebsites() {
             image: "TechNews.jpeg",
             lastUpdated: "5 hours ago",
             status: "active",
-            path:'/TechNews'
+            path: "/TechNews",
         },
         {
             id: 2,
@@ -63,20 +64,7 @@ function TrackWebsites() {
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="relative flex-grow">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg
-                                    className="h-5 w-5 text-gray-400"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                    ></path>
-                                </svg>
+                                {SearchIcon}
                             </div>
                             <input
                                 type="text"
@@ -85,20 +73,7 @@ function TrackWebsites() {
                             />
                         </div>
                         <button className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-xl transition duration-300 flex items-center justify-center shadow-lg shadow-green-500/20">
-                            <svg
-                                className="w-5 h-5 mr-2"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                ></path>
-                            </svg>
+                            {AddIcon}
                             Add Website
                         </button>
                     </div>
@@ -132,28 +107,20 @@ function TrackWebsites() {
                                     <span className="text-sm text-gray-400">
                                         Updated: {website.lastUpdated}
                                     </span>
-
                                 </div>
 
                                 <div className="flex space-x-3">
-                                    <button onClick={() => website.path && navigate(website.path)} className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20">
+                                    <button
+                                        onClick={() =>
+                                            website.path &&
+                                            navigate(website.path)
+                                        }
+                                        className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20"
+                                    >
                                         View WebSite
                                     </button>
                                     <button className="w-10 h-10 flex items-center justify-center bg-gray-700/50 hover:bg-gray-700 text-gray-300 rounded-lg transition duration-300 border border-gray-600/50">
-                                        <svg
-                                            className="w-5 h-5"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth="2"
-                                                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                                            ></path>
-                                        </svg>
+                                        {OptionsIcon}
                                     </button>
                                 </div>
                             </div>
