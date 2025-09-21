@@ -113,15 +113,6 @@ function TrackWebsites() {
                                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                                <div className="absolute top-4 right-4">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${website.status === "active" ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-gray-700/60 text-gray-300 border border-gray-600/50"}`}
-                                    >
-                                        {website.status === "active"
-                                            ? "Active"
-                                            : "Paused"}
-                                    </span>
-                                </div>
                                 <div className="absolute top-4 left-4 w-3 h-3 bg-green-500/95 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30"></div>
                             </div>
 
@@ -137,21 +128,12 @@ function TrackWebsites() {
                                     <span className="text-sm text-gray-400">
                                         Updated: {website.lastUpdated}
                                     </span>
-                                    <div className="flex items-center">
-                                        <div
-                                            className={`w-2 h-2 rounded-full mr-2 ${website.status === "active" ? "bg-green-500 animate-pulse" : "bg-gray-500"}`}
-                                        ></div>
-                                        <span className="text-xs text-gray-400">
-                                            {website.status === "active"
-                                                ? "Monitoring"
-                                                : "Paused"}
-                                        </span>
-                                    </div>
+
                                 </div>
 
                                 <div className="flex space-x-3">
                                     <button className="flex-1 bg-green-500/10 hover:bg-green-500/20 text-green-400 font-medium py-2 px-4 rounded-lg transition duration-300 text-sm border border-green-500/20">
-                                        View Changes
+                                        View WebSite
                                     </button>
                                     <button className="w-10 h-10 flex items-center justify-center bg-gray-700/50 hover:bg-gray-700 text-gray-300 rounded-lg transition duration-300 border border-gray-600/50">
                                         <svg
