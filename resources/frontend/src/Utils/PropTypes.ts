@@ -3,3 +3,8 @@ export interface SubscribeModalProps {
     onClose: () => void;
     website_id?: string;
 }
+export interface PostModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    website_id: string;
+}

@@ -1,12 +1,14 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import SubscribeModal from "../Models/SubscribeModel.tsx";
+import PostModal from "../Models/PostModel.tsx";
 
 function TechNewsUI() {
     const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
+    const [isPostModalOpen, setIsPostModalOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const { website_id } = location.state || {};
+    const { website_id } = location.state || { website_id: "1" };
 
     const posts = [
         {
@@ -39,7 +41,7 @@ function TechNewsUI() {
                         <button onClick={() => setIsSubscribeModalOpen(true)} className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-green-500/20">
                             Subscribe
                         </button>
-                        <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-blue-500/20">
+                        <button onClick={() => setIsPostModalOpen(true)} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-blue-500/20">
                             New Post
                         </button>
                     </div>
@@ -85,10 +87,16 @@ function TechNewsUI() {
                     </div>
                 </div>
             </div>
+
             <SubscribeModal
                 isOpen={isSubscribeModalOpen}
-                website_id={String(website_id)}
+                website_id={website_id}
                 onClose={() => setIsSubscribeModalOpen(false)}
+            />
+            <PostModal
+                isOpen={isPostModalOpen}
+                website_id={website_id}
+                onClose={() => setIsPostModalOpen(false)}
             />
         </div>
     );
