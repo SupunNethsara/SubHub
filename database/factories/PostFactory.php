@@ -19,8 +19,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'=> $this->faker->sentence(),
-            'content'=>$this->faker->paragraph(),
+            'title'=> fake()->sentence(),
+            'content'=>fake()->paragraph(),
             'website_id' => 'website_' . $this->faker->unique()->numberBetween(1, 10),
             'image' => null,
         ];
