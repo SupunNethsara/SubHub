@@ -164,19 +164,7 @@ function IntroContent() {
                         <span className="group-hover:scale-105 transition-transform duration-200">
                             Get Started - It's Free
                         </span>
-                        <svg
-                            className={`ml-3 transition-all duration-300 ${
-                                isHovered ? 'translate-x-2 scale-110' : 'translate-x-0'
-                            }`}
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
-                            <path d="M5 12h14m-7-7l7 7-7 7"/>
-                        </svg>
+
                     </span>
 
                     <span className="absolute inset-0 rounded-xl overflow-hidden">

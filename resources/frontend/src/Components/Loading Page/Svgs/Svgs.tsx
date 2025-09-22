@@ -31,3 +31,4 @@ export const MultiWebsiteIcon = (
         ></path>
     </svg>
 );
+
