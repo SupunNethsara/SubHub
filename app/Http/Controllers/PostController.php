@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\Post\PostRequest;
 use App\Mail\PostNotification;
 use App\Models\Post;
 use App\Models\Subscription;
