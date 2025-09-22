@@ -29,7 +29,6 @@ it('can store a subscription via API', function () {
             'website_id' => $data['website_id'],
         ]
     ]);
-
     $this->assertDatabaseHas('subscriptions', $data);
 });
 

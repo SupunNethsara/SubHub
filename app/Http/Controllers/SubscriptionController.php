@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubscriptionRequest;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
-use mysql_xdevapi\Exception;
 
 class SubscriptionController extends Controller
 {
