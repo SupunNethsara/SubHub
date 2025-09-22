@@ -1,13 +1,15 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import SubscribeModal from "../Models/SubscribeModel.tsx";
+import PostModal from "../Models/PostModel.tsx";
 
 function ReadMeUI() {
     const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false);
+    const [isPostModalOpen, setIsPostModalOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const { website_id } = location.state || {};
-console.log(website_id)
+
     const posts = [
         {
             id: 1,
@@ -39,7 +41,7 @@ console.log(website_id)
                         <button onClick={() => setIsSubscribeModalOpen(true)} className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-blue-500/20">
                             Subscribe
                         </button>
-                        <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-purple-500/20">
+                        <button onClick={() => setIsPostModalOpen(true)} className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition duration-300 flex items-center shadow-lg shadow-blue-500/20">
                             New Post
                         </button>
                     </div>
@@ -90,6 +92,11 @@ console.log(website_id)
                 isOpen={isSubscribeModalOpen}
                 website_id={String(website_id)}
                 onClose={() => setIsSubscribeModalOpen(false)}
+            />
+            <PostModal
+                isOpen={isPostModalOpen}
+                website_id={website_id}
+                onClose={() => setIsPostModalOpen(false)}
             />
         </div>
     );
