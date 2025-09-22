@@ -21,7 +21,7 @@ it('fetches posts filtered by website_id header', function () {
     Post::factory()->create(['title' => 'C', 'website_id' => 'website_002']);
 
     $response = $this->getJson('/api/posts', [
-        'website_id' => 'website_001' // header
+        'website_id' => 'website_001'
     ]);
 
     $response->assertStatus(200)
