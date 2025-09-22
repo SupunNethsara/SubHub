@@ -22,9 +22,11 @@ class PostController extends Controller
             ], 422);
         }
 
+        $posts = Post::where('website_id', $websiteId)->get();
+
         return response()->json([
             'success' => true,
-            'posts' => []
+            'posts' => $posts
         ], 200);
     }
     public function store(PostRequest $request)
