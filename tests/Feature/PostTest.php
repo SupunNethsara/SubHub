@@ -49,3 +49,54 @@ it('can create a post with image and send mail to subscribers', function () {
         return $mail->hasTo($subscriber->email);
     });
 });
+it('can create a post with image and notify subscribers', function () {
+    Storage::fake('public');
+    Mail::fake();
+
+    $subscriber = Subscription::factory()->create([
+        'website_id' => 'website_001',
+        'email' => 'subscriber1@example.com'
+    ]);
+
+    $file = UploadedFile::fake()->image('post.jpg');
+
+    $response = $this->postJson('/api/storePost', [
+        'title' => 'Test Post',
+        'content' => 'Post content',
+        'website_id' => 'website_001',
+        'image' => $file
+    ]);
+
+    $response->assertStatus(201)
+        ->assertJson([
+            'success' => true,
+            'post' => [
+                'title' => 'Test Post',
+                'website_id' => 'website_001'
+            ]
+        ]);
+
+    $this->assertDatabaseHas('posts', [
+        'title' => 'Test Post',
+        'website_id' => 'website_001'
+    ]);
+
+    Storage::disk('public')->assertExists('posts/' . $file->hashName());
+
+    Mail::assertSent(PostNotification::class, function ($mail) use ($subscriber) {
+        return $mail->hasTo($subscriber->email);
+    });
+});
+it('cannot create a post without title', function () {
+    $file = UploadedFile::fake()->image('post.jpg');
+
+    $response = $this->postJson('/api/storePost', [
+        'content' => 'Some content',
+        'website_id' => 'website_001',
+        'image' => $file
+    ]);
+
+    $response->assertStatus(201)
+        ->assertJsonValidationErrors('title');
+});
+
