@@ -6,7 +6,7 @@ function IntroHeader() {
                     <div className="flex items-center space-x-3">
 
                         <img
-                            src="/Logo.png"
+                            src="/LogoNew.png"
                             alt="Logo"
                             className="w-40 h-16 object-cover rounded-lg"
                         />
