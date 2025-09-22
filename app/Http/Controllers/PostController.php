@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
+    public function index(Request $request)
+    {
+
+    }
     public function store(PostRequest $request)
     {
         $validated = $request->validated();
@@ -42,7 +46,5 @@ class PostController extends Controller
             ], 500);
         }
     }
-    public function getByWebsite(Request $request){
 
-    }
 }
