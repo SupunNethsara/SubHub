@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { AddIcon, OptionsIcon, SearchIcon } from "./Svg/Svgicons.tsx";
+import { AddIcon, OptionsIcon, SearchIcon, HomeIcon } from "./Svg/Svgicons.tsx";
 
 function TrackWebsites() {
     const websites = [
@@ -71,6 +71,10 @@ function TrackWebsites() {
         }
     };
 
+    const handleHomeNavigate = () => {
+        navigate("/");
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -99,6 +103,17 @@ function TrackWebsites() {
                         </div>
                     </div>
                 )}
+
+                <div className="flex justify-between items-center mb-8">
+                    <button
+                        onClick={handleHomeNavigate}
+                        className="flex items-center space-x-2 bg-gray-800/60 hover:bg-gray-700/60 text-gray-300 hover:text-white py-2 px-4 rounded-xl transition-all duration-300 border border-gray-700/50 hover:border-gray-600/50 group"
+                        title="Go back to Home"
+                    >
+                        {HomeIcon}
+                        <span className="text-sm font-medium">Home</span>
+                    </button>
+                </div>
 
                 <div className="text-center mb-12">
                     <div className="flex items-center justify-center mb-4">
