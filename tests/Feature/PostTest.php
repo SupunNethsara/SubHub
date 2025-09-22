@@ -60,7 +60,7 @@ it('can create a post with image and notify subscribers', function () {
 
     $file = UploadedFile::fake()->image('post.jpg');
 
-    $response = $this->postJson('/api/storePost', [
+    $response = $this->postJson('/api/posts', [
         'title' => 'Test Post',
         'content' => 'Post content',
         'website_id' => 'website_001',
@@ -91,7 +91,7 @@ it('can create a post with image and notify subscribers', function () {
 it('cannot create a post without title', function () {
     $file = UploadedFile::fake()->image('post.jpg');
 
-    $response = $this->postJson('/api/storePost', [
+    $response = $this->postJson('/api/posts', [
         'content' => 'Some content',
         'website_id' => 'website_001',
         'image' => $file
@@ -102,7 +102,7 @@ it('cannot create a post without title', function () {
 it('cannot create a post without content', function () {
     $file = UploadedFile::fake()->image('post.jpg');
 
-    $response = $this->postJson('/api/storePost', [
+    $response = $this->postJson('/api/posts', [
         'title' => 'Test Post',
         'website_id' => 'website_001',
         'image' => $file
@@ -115,7 +115,7 @@ it('cannot create a post without content', function () {
 it('cannot create a post without website_id', function () {
     $file = UploadedFile::fake()->image('post.jpg');
 
-    $response = $this->postJson('/api/storePost', [
+    $response = $this->postJson('/api/posts', [
         'title' => 'Test Post',
         'content' => 'Some content',
         'image' => $file
@@ -128,7 +128,7 @@ it('cannot create a post without website_id', function () {
 it('fails if image is not valid type', function () {
     $file = UploadedFile::fake()->create('document.pdf', 100);
 
-    $response = $this->postJson('/api/storePost', [
+    $response = $this->postJson('/api/posts', [
         'title' => 'Test Post',
         'content' => 'Some content',
         'website_id' => 'website_001',
