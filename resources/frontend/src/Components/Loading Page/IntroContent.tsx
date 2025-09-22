@@ -1,6 +1,7 @@
 import { EmailIcon, MultiWebsiteIcon } from "./Svgs/Svgs";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
+import HowItWorksModal from "./HowItWorksModal.tsx";
 
 function IntroContent() {
     const navigate = useNavigate();
@@ -8,7 +9,15 @@ function IntroContent() {
     const [isVisible, setIsVisible] = useState(false);
     const [isPulsing, setIsPulsing] = useState(true);
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
     const handleNavigate = () => {
         if (buttonRef.current) {
             buttonRef.current.style.transform = 'scale(0.95)';
@@ -173,16 +182,13 @@ function IntroContent() {
                 </button>
 
                 <button
-                    className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-xl transition-all duration-300 border border-gray-700 shadow-lg shadow-black/10 hover:scale-105 hover:shadow-xl"
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'scale(1.05)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'scale(1)';
-                    }}
+                    onClick={openModal}
+                    className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-xl transition-all duration-300 border border-gray-700 shadow-lg shadow-black/10 hover:scale-105 hover:shadow-xl group relative overflow-hidden"
                 >
-                    See How It Works
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000"></div>
+                    <span className="relative">See How It Works</span>
                 </button>
+                <HowItWorksModal isOpen={isModalOpen} onClose={closeModal} />
             </div>
 
             <style>{`
