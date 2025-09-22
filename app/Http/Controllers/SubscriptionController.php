@@ -28,7 +28,7 @@ class SubscriptionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SubscriptionRequest $request)
+    public function __invoke(SubscriptionRequest $request)
     {
         $validated = $request->validated();
         try{

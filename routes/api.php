@@ -1,6 +1,7 @@
 <?php
 
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/subscription' , [\App\Http\Controllers\SubscriptionController::class , 'store']);
+Route::post('/subscription', SubscriptionController::class);
