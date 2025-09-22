@@ -138,3 +138,4 @@ it('fails if image is not valid type', function () {
     $response->assertStatus(422)
         ->assertJsonValidationErrors('image');
 });
+

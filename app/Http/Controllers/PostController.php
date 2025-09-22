@@ -42,4 +42,7 @@ class PostController extends Controller
             ], 500);
         }
     }
+    public function getByWebsite(Request $request){
+
+    }
 }
