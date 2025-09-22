@@ -23,9 +23,7 @@ class SubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => [
-                'required',
-                'email',
+            'email' => ['required', 'email',
                 Rule::unique('subscriptions')->where(function ($query) {
                     return $query->where('website_id', $this->input('website_id'));
                 })
