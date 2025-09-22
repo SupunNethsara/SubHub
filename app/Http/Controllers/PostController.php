@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $websiteId = $request->header('website_id');
+        $websiteId = $request->header('website_id') ?? $request->query('website_id');
 
         if (!$websiteId) {
             return response()->json([
@@ -29,6 +29,7 @@ class PostController extends Controller
             'posts' => $posts
         ], 200);
     }
+
     public function store(PostRequest $request)
     {
         $validated = $request->validated();
