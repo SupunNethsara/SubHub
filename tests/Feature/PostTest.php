@@ -96,7 +96,7 @@ it('cannot create a post without title', function () {
         'image' => $file
     ]);
 
-    $response->assertStatus(201)
+    $response->assertStatus(422)
         ->assertJsonValidationErrors('title');
 });
 
