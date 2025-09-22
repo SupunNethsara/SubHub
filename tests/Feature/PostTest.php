@@ -1,7 +1,11 @@
 <?php
 
+use App\Mail\PostNotification;
 use App\Models\Post;
+use App\Models\Subscription;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
@@ -16,6 +20,32 @@ it('can create 1 post using factory', function () {
         'website_id' => $post->website_id,
     ]);
 });
-it('fails intentionally', function () {
-    $this->assertTrue(false, 'This test is supposed to fail intentionally.');
+it('can still run this test', function () {
+    $this->assertTrue(true);
+});
+it('can create a post with image and send mail to subscribers', function () {
+    Storage::fake('public');
+    Mail::fake();
+
+    $subscriber = Subscription::factory()->create([
+        'email' => 'subscriber1@example.com',
+        'website_id' => '1'
+    ]);
+
+    $file = UploadedFile::fake()->image('post.jpg');
+
+    $post = Post::factory()->create([
+        'title' => 'New Post',
+        'website_id' => '1',
+        'image' => $file->hashName(),
+    ]);
+
+    Storage::disk('public')->putFileAs('', $file, $file->hashName());
+    Mail::to($subscriber->email)->send(new PostNotification($post));
+
+    $this->assertDatabaseHas('posts', ['title' => 'New Post']);
+    Storage::disk('public')->assertExists($file->hashName());
+    Mail::assertSent(PostNotification::class, function ($mail) use ($subscriber) {
+        return $mail->hasTo($subscriber->email);
+    });
 });
