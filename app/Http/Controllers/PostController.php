@@ -13,7 +13,19 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
+        $websiteId = $request->header('website_id');
 
+        if (!$websiteId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'website_id header is required'
+            ], 422);
+        }
+
+        return response()->json([
+            'success' => true,
+            'posts' => []
+        ], 200);
     }
     public function store(PostRequest $request)
     {
