@@ -28,7 +28,7 @@ class SubscriptionRequest extends FormRequest
                     return $query->where('website_id', $this->input('website_id'));
                 })
             ],
-            'website_id' => ['required', 'string'],
+            'website_id' => ['required'],
         ];
     }
     public function messages()

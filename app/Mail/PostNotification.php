@@ -27,6 +27,9 @@ class PostNotification extends Mailable
     public function build(): static
     {
         return $this->subject('New Post Notification')
-            ->view('emails.post_notification');
+            ->view('emails.post_notification')
+            ->with([
+                'post' => $this->post,
+            ]);
     }
 }
